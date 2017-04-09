@@ -24,10 +24,11 @@ public class TicketServiceImplTest {
 	@Mock
 	private TicketDao dao;
 	
-	//@Autowired  // to let spring create the object
+	@Autowired  // to let spring create the object
 	@InjectMocks  // to let mockito inject mocks into service
 	TicketServiceImpl service;
-
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -35,8 +36,8 @@ public class TicketServiceImplTest {
 
 	@Test
 	public void test() {
-		
-		when(dao.createTicket(any(Ticket.class))).thenReturn(0);
+		Ticket ticket = new Ticket();
+		when(dao.createTicket(ticket)).thenReturn(0);
 		int result = service.buyTicket("Piyush", "7028910047");
 		assertEquals(0, result);
 	}
